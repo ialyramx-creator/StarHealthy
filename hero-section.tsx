@@ -27,7 +27,6 @@ export default function HeroSection() {
     { name: "Inicio", href: "#hero" },
     { name: "Nosotros", href: "#mission" },
     { name: "Comunidad", href: "#community" },
-    { name: "Testimonios", href: "#testimonials" },
     { name: "Unirse", href: "#join" },
   ]
 
