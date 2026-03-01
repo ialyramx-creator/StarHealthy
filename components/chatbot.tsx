@@ -59,7 +59,7 @@ export default function Chatbot() {
     setIsLoading(true)
 
     try {
-      const webhookUrl = "https://n8n.srv1337324.hstgr.cloud/webhook-test/starhealthy-chat-demo" //<--test, production--> "https://n8n.srv1337324.hstgr.cloud/webhook/starhealthy-chat-demo"
+      const webhookUrl =  "https://n8n.srv1337324.hstgr.cloud/webhook/starhealthy-chat-demo"//"https://n8n.srv1337324.hstgr.cloud/webhook-test/starhealthy-chat-demo" <--test, production--> "https://n8n.srv1337324.hstgr.cloud/webhook/starhealthy-chat-demo"
 
       const response = await fetch(webhookUrl, {
         method: "POST",
