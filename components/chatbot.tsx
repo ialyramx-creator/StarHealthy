@@ -59,19 +59,27 @@ export default function Chatbot() {
     setIsLoading(true)
 
     try {
-      const response = await fetch("/api/chat", {
+      const webhookUrl = "https://n8n.srv1337324.hstgr.cloud/webhook-test/starhealthy-chat-demo" //<--test, production--> "https://n8n.srv1337324.hstgr.cloud/webhook/starhealthy-chat-demo"
+
+      const response = await fetch(webhookUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: input, sessionId: sessionId }),
+        body: JSON.stringify({
+          chatInput: input,      // <- n8n recibe chatInput
+          sessionId: sessionId,  // <- para mantener “sesión” si luego lo usas
+        }),
       })
-
+      
       const data = await response.json()
-
+      
       if (!response.ok) {
-        throw new Error(data.error || "Failed to get response from server.")
+        throw new Error(data?.error || "Failed to get response from webhook.")
       }
-
-      const botMessage: Message = { role: "bot", content: data.reply }
+      
+      // Tu n8n debe responder: { output: "..." }
+      const botText = data?.output ?? "No recibí respuesta del bot."
+      
+      const botMessage: Message = { role: "bot", content: botText }
       setMessages((prev) => [...prev, botMessage])
     } catch (error) {
       console.error(error)
